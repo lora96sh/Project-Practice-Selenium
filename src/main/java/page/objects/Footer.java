@@ -1,4 +1,6 @@
 package page.objects;
 
-public class signIn {
+public class Footer {
+
+
 }

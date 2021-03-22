@@ -5,7 +5,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aspectj.lang.annotation.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -26,7 +29,9 @@ public class CommonOps extends Base {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("http://automationpractice.com/");
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, 10);
         ManagePages.initObjects();
+        action = new Actions(driver);
     }
 
     public static WebDriver initChromeDriver() {
@@ -46,9 +51,15 @@ public class CommonOps extends Base {
         else
             throw new RuntimeException();
     }
+//
+//    @AfterClass
+//    public void closeSession() {
+//        driver.quit();
+//    }
 
-    @AfterClass
-    public void closeSession() {
-        driver.quit();
+    @AfterMethod
+    public void afterMethod() {
+        driver.get("http://automationpractice.com/");
     }
+
 }

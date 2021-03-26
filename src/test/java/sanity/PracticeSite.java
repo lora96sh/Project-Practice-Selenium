@@ -15,11 +15,12 @@ public class PracticeSite extends CommonOps {
     public void test01_verifyUserNameInHeader() {
         WebFlows.login("lorashamshoom@hotmail.com", "LORALORA");
         Verifications.verifyTextInElement(header.user_name, "lora shamshoom");
+        WebFlows.logout();
     }
 
     @Test
     public void test02_verifyLogout() {
-        test01_verifyUserNameInHeader();
+        WebFlows.login("lorashamshoom@hotmail.com", "LORALORA");
         WebFlows.logout();
         Verifications.verifyElementIsNotExist(header.user_name);
     }
